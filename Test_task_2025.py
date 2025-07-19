@@ -528,9 +528,9 @@ print('Сравнение тарифов между 2017 и 2020 (доход (т
 print(pivot_tariff.round(0).astype(int),'\n')  # Округление до целых
 
 
-#4. Анализ по услугам (#3. Анализ по тарифам (TP_GROUP))
-print('Доход от услуги "Доп.интернет"')
-internet_revenue = df_melted[df_melted['service_group'] == 'Доп.интернет'] \
+#4. Анализ по услугам
+print('Доход от услуги "услуга_1"')
+internet_revenue = df_melted[df_melted['service_group'] == 'услуга_1'] \
     .groupby(['Год', 'Месяц'])['Доход'].sum() \
     .unstack()*1000 #настройка чтоб выводились тыс. вместо млн.
 pd.options.display.float_format = '{:,.0f} тыс.'.format
@@ -540,7 +540,7 @@ print(internet_revenue,'\n')
 # Построение графика
 ax = internet_revenue.plot(
     kind='bar',
-    title='Доходы от "Доп.интернета"',
+    title='Доходы от "услуга_1"',
     figsize=(12, 6),
     xlabel='Год',
     ylabel='Сумма дохода (тыс. руб.)',
@@ -560,9 +560,9 @@ plt.show()
 
 
 
-#Этап 10 ML Предсказание на декабрь 2017 для услуги Доп.интернет
+#Этап 10 ML Предсказание на декабрь 2017 для услуги услуга_1
 df_melted['Доход'] = df_melted['Доход'] * 1_000_000  # Переводим из миллионов в исходные единицы
-df_melted = df_melted[df_melted['service_group'] == 'Доп.интернет'] #фильтруем по услуге
+df_melted = df_melted[df_melted['service_group'] == 'услуга_1'] #фильтруем по услуге
 
 # Разделение на обучающую и тестовую выборки
 train = df_melted[(df_melted['Год'] == '2017') & (df_melted['MONTH'].isin(['10', '11']))]
@@ -662,7 +662,7 @@ plt.scatter(Y_test, Y_pred, alpha=0.6, c='blue', edgecolor='k',
 plt.plot([min(Y_test), max(Y_test)], [min(Y_test), max(Y_test)], 
          'r--', label='Идеальная точность (y = x)')
 
-plt.title('Сравнение прогноза и фактического дохода\n"Доп.интернет" (Декабрь 2017)')
+plt.title('Сравнение прогноза и фактического дохода\n"услуга_1" (Декабрь 2017)')
 plt.xlabel('Фактический доход (руб)')
 plt.ylabel('Прогнозируемый доход (руб)')
 plt.grid(True, linestyle='--', alpha=0.7)
@@ -704,7 +704,7 @@ plt.scatter(Y_test, Y_pred, alpha=0.6, c='blue', edgecolor='k',
 plt.plot([min(Y_test), max(Y_test)], [min(Y_test), max(Y_test)], 
          'r--', label='Идеальная точность (y = x)')
 
-plt.title('Сравнение прогноза и фактического дохода\n"Доп.интернет" (Декабрь 2017)')
+plt.title('Сравнение прогноза и фактического дохода\n"услуга_1" (Декабрь 2017)')
 plt.xlabel('Фактический доход (руб)')
 plt.ylabel('Прогнозируемый доход (руб)')
 plt.grid(True, linestyle='--', alpha=0.7)
