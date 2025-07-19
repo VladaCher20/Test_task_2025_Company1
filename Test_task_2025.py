@@ -617,7 +617,7 @@ plt.scatter(Y_test, Y_pred, alpha=0.6, c='blue', edgecolor='k',
 plt.plot([min(Y_test), max(Y_test)], [min(Y_test), max(Y_test)], 
          'r--', label='Идеальная точность (y = x)')
 
-plt.title('Сравнение прогноза и фактического дохода\n"Доп.интернет" (Декабрь 2017)')
+plt.title('Сравнение прогноза и фактического дохода\n"услуга_1" (Декабрь 2017)')
 plt.xlabel('Фактический доход (руб)')
 plt.ylabel('Прогнозируемый доход (руб)\n')
 plt.grid(True, linestyle='--', alpha=0.7)
